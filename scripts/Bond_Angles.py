@@ -1,4 +1,4 @@
-import os,sys,math,numpy
+import sys,math
 from Equations import * 
 
 #All the molecules covalence radius 
@@ -20,7 +20,7 @@ def is_xyz_file(xyz_file):
     try: 
         file = open(xyz_file, "r")
     except IOError: 
-        print("File does not exist")
+        print('Error: file (%s) not found!\n' % (xyz_file))
         sys.exit() # terminates the program as the file doesn't exist RIP 
     lines = file.readlines() 
     file.close()
@@ -72,6 +72,7 @@ def angle(c1,c2,c3):
     uv1 = unit_vector(c2,c1)
     uv2 = unit_vector(c2,c3)
     dot = dot_product(uv1,uv2)
+    #(180.0 / math.pi)  -> converts it into degrees 
     return (180.0/math.pi) * math.acos(dot)
 
 #Gets the angle of all the connects of the molecules 
@@ -110,7 +111,7 @@ def dihedral(c1,c2,c3,c4):
     #4th. Get the sign of the torison angle. Equation (normal vector of ijk) dot product to the vector of kl
     sign = 2 * float(dot_product(ji_jk, kl) < 0) - 1 
     #Using math.acos(dot) = cos^(-1)(cos(theta)) = theta 
-    return (180.0 / math.pi) * sign * math.acos(dot) 
+    return  (180.0 / math.pi) * sign * math.acos(dot) 
 
 def get_dihedral(xyz,bonds):
     xyz = xyz[2::]
@@ -132,3 +133,18 @@ def get_dihedral(xyz,bonds):
                         continue
                     angles.append([bonds[k][1], bonds[i][1],bonds[j][1],bonds[x][1],dihedral(xyz[k], xyz[i], xyz[j], xyz[x])])
     return angles
+
+######
+#Out of Plane Angles 
+######
+def out_plane(i,j,k,l):
+    rjl = unit_vector(l,j)
+    rkl = unit_vector(l,k)
+    rli = unit_vector(l,i)
+    jl_x_kl = cross_product(rjl,rkl)
+    dot = dot_product(jl_x_kl, rli)
+    return (180.0 / math.pi) *  math.asin(dot) 
+
+def get_out_of_plane(xyz, bonds):
+    xyz = xyz[2::]
+    
