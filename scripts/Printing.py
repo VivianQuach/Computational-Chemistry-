@@ -46,6 +46,10 @@ def print_angles(angle):
 
 #Dihedral Angle
 def print_dihedral(dihedral):
+    if(len(dihedral) == 0):
+        print("There is no dihedral angles")
+        print("")
+        return
     no_repeats = [] 
     for i in range(len(dihedral)):
         add = False
@@ -60,3 +64,5 @@ def print_dihedral(dihedral):
         display = "-".join(str(no_repeats[i][x]) for x in range(4))
         print(display, ":", no_repeats[i][4])
     print()
+
+#Out of Plane Angle

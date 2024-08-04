@@ -6,4 +6,4 @@ The goal of these videos is to get the basic understanding of what I'm really ge
 
 Enjoy some of my notes I will be doing on Juypter Notebook :)  
 
-Look at this weird but cool looking [Benzene](./docs/Benzene_Weird.png)
+Look at this weird but cool looking [Benzene](./docs/Benzene_Weird.png) 

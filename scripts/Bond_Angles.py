@@ -147,4 +147,23 @@ def out_plane(i,j,k,l):
 
 def get_out_of_plane(xyz, bonds):
     xyz = xyz[2::]
-    
+    angles = [] 
+    print("In")
+    for l in range(len(xyz)):
+        if (len(bonds[l][2]) > 1):
+            l_bond = bonds[l][2]
+            for i in range(len(l_bond)):
+                i_bond = bonds[l][2][i]
+                for j in range(len(l_bond)):
+                    if(j == i):
+                        continue 
+                    j_bond = bonds[l][2][j]
+                    if(j < (len(l_bond)-1)):
+                        for k in range(j+1,len(bonds[l][2])):
+                            if(k == i):
+                                continue
+                            k_bond = bonds[l][2][k]
+                            angles.append([bonds[i_bond][1],bonds[j_bond][1],bonds[k_bond][1],bonds[l][1], out_plane(xyz[i_bond],xyz[j_bond],xyz[k_bond], xyz[l])])
+    return angles
+
+
