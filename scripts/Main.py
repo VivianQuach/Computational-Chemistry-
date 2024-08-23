@@ -19,8 +19,13 @@ print_dihedral(dihedral)
 
 
 outOfPlane = get_out_of_plane(xyz,bonds)
-print("You")
-for x in outOfPlane:
-   print(x)
-print("Me")
-#print_outOfPlane(outOfPlane)
+print_outOfPlane(outOfPlane)
+
+com = get_com(xyz)
+print_com(com)
+
+coords = recenter(xyz,com)
+print_recenter(coords)
+
+moi = get_moi(xyz)
+print_moi(moi)

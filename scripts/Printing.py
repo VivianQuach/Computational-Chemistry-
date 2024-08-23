@@ -66,3 +66,35 @@ def print_dihedral(dihedral):
     print()
 
 #Out of Plane Angle
+def print_outOfPlane(outOfPlane):
+    if(len(outOfPlane) == 0):
+        print("There is no out of plane angles")
+        print("")
+        return
+    print("Out of Plane Angle")
+    for i in range(len(outOfPlane)):
+        display = "-".join(str(outOfPlane[i][x]) for x in range(4))
+        print(display, ":", round(outOfPlane[i][4],3))
+    print()
+
+#Center of Mass 
+def print_com(com):
+    print("Center of Mass")
+    print("x:",round(com[0],3), " y:", round(com[1],3), " z:", round(com[2],3))
+    print()
+
+def print_recenter(xyz):
+    print("Recentering the xyz file based off of Center of Mass")
+    print()
+    for x in xyz: 
+        print(x[0] + ": " +  " , ".join(str(round(x[y],3)) for y in range(1,4)))
+    print() 
+
+#Moment of Inertia 
+def print_moi(moi):
+    print("Moment of Inertia Tensor")
+    print("\t x \t y \t z ")
+    print("x: \t" + str(round(moi[0][0],3)) + "\t" +  str(round(moi[0][1],3)) + "\t" +  str(round(moi[0][2],3)))
+    print("y: \t" + str(round(moi[1][0],3)) + "\t" +  str(round(moi[1][1],3)) + "\t" +  str(round(moi[1][2],3)))
+    print("z: \t" + str(round(moi[2][0],3)) + "\t" +  str(round(moi[2][1],3)) + "\t" +  str(round(moi[2][2],3)))
+    print()
