@@ -223,6 +223,4 @@ def get_moi(xyz):
                 else:
                     moi[j][k] = mass * xyz[1][j+1] * xyz[i][k+1]
     return moi 
-
-
-        
+     
